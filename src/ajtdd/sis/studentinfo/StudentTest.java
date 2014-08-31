@@ -1,14 +1,10 @@
 package ajtdd.sis.studentinfo;
 
-import ajtdd.Debug;
-
 public class StudentTest extends junit.framework.TestCase {
 	private static final String STUDENT_NAME_2 = "Joe Blow";
 	private static final String STUDENT_NAME_1 = "Jane Doe";
 
 	public void testCreate() {
-		Debug.log.info("StudentTest");
-
 		Student student1 = new Student(STUDENT_NAME_1);
 		assertEquals(STUDENT_NAME_1, student1.getName());
 

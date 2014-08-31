@@ -1,6 +1,5 @@
 package ajtdd.exercises.l3;
 
-import ajtdd.Debug;
 import junit.framework.TestCase;
 
 public class CharacterTest extends TestCase {
@@ -9,8 +8,6 @@ public class CharacterTest extends TestCase {
 	private static final char SPACE = ' ';
 
 	public void testWhitespace() {
-		Debug.log.info("CharacterTest");
-		
 		assertTrue("newline", Character.isWhitespace(NEWLINE));
 		assertTrue("tab", Character.isWhitespace(TAB));
 		assertTrue("space", Character.isWhitespace(SPACE));

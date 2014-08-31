@@ -1,9 +1,5 @@
 package ajtdd.chess;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ajtdd.chess.pieces.Pawn;
 import ajtdd.chess.pieces.Piece;
 
 /**
@@ -14,30 +10,48 @@ public class Board {
 	private static final int SIZE = 8;
 	public static final String NL = System.getProperty("line.separator");
 	private int numberOfPieces = 0; 
-	private List<Pawn> listOfPawns;
 	private Piece[][] pieces;
 	
 	public Board() {
 		pieces = new Piece[SIZE][SIZE];
-		listOfPawns = new ArrayList<Pawn>();
 		initialize();
 	}
 	
 	private void initialize() {
-		int row;
+		int row = 0; // first row
+		pieces[row][0] = Piece.createRookWhite();
+		pieces[row][7] = Piece.createRookWhite();
+		pieces[row][1] = Piece.createKnightWhite();
+		pieces[row][6] = Piece.createKnightWhite();
+		pieces[row][2] = Piece.createBishopWhite();
+		pieces[row][5] = Piece.createBishopWhite();
+		pieces[row][3] = Piece.createQueenWhite();
+		pieces[row][4] = Piece.createKingWhite();
+		numberOfPieces += 8;
 		
 		row = 1; // second row
 		for (int col = 0; col < SIZE; col++) {
-			Pawn pawn = new Pawn(Pawn.WHITE_COLOR);
+			Piece pawn = Piece.createPawnWhite();
 			pieces[row][col] = pawn;
-			add(pawn);
+			numberOfPieces++;
 		}
 		row = 6; // seventh row
 		for (int col = 0; col < SIZE; col++) {
-			Pawn pawn = new Pawn(Pawn.BLACK_COLOR);
+			Piece pawn = Piece.createPawnBlack();
 			pieces[row][col] = pawn;
-			add(pawn);
+			numberOfPieces++;;
 		}
+		
+		row = 7; // eighth row
+		pieces[row][0] = Piece.createRookBlack();
+		pieces[row][7] = Piece.createRookBlack();
+		pieces[row][1] = Piece.createKnightBlack();
+		pieces[row][6] = Piece.createKnightBlack();
+		pieces[row][2] = Piece.createBishopBlack();
+		pieces[row][5] = Piece.createBishopBlack();
+		pieces[row][3] = Piece.createQueenBlack();
+		pieces[row][4] = Piece.createKingBlack();
+		numberOfPieces += 8;
 	}
 	
 	/**
@@ -73,14 +87,4 @@ public class Board {
 	public int getNumberOfPieces() {
 		return numberOfPieces;
 	}
-
-	public void add(Pawn pawn) {
-		listOfPawns.add(pawn);
-		numberOfPieces++;
-	}
-
-	public List<Pawn> getListOfPawns() {
-		return listOfPawns;
-	}
-
 }

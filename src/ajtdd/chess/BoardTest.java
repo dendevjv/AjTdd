@@ -1,11 +1,6 @@
 package ajtdd.chess;
 
-import java.util.List;
-
-import ajtdd.Debug;
-import ajtdd.chess.pieces.Pawn;
 import static ajtdd.chess.Board.NL;
-
 import junit.framework.TestCase;
 
 public class BoardTest extends TestCase {
@@ -16,44 +11,41 @@ public class BoardTest extends TestCase {
 	}
 	
 	public void testCreate() {
-		Debug.log.info("BoardTest");
-		
-		assertEquals(16, board.getNumberOfPieces());
-		
-		String rank2 = board.getRank(2);
-//		System.out.println(rank2);
-		assertEquals("pppppppp", rank2);
-		
-		String rank7 = board.getRank(7);
-//		System.out.println(rank7);
-		assertEquals("PPPPPPPP", rank7);
-		
-		final String expectedBoard = "........" + NL
-				+ "PPPPPPPP" + NL
-				+ "........" + NL
-				+ "........" + NL
-				+ "........" + NL
-				+ "........" + NL
-				+ "pppppppp" + NL
-				+ "........" + NL;
+		assertEquals(32, board.getNumberOfPieces());
+
+		String expectedBoard = contructExpected();
 		String actualBoard = board.toString();
-//		System.out.println();
-//		System.out.println("--------");
-//		System.out.println(actualBoard);
-//		System.out.println("--------" + NL);
+//		printBoard(actualBoard);
 		assertEquals(expectedBoard, actualBoard);
-		
-//		Pawn pawnBlack = new Pawn(Pawn.BLACK_COLOR);
-//		board.add(pawnBlack);
-//		List<Pawn> list = board.getListOfPawns();
-//		assertEquals(1, board.getNumberOfPieces());
-//		assertEquals(pawnBlack, list.get(0));
-//		
-//		Pawn pawnWhite = new Pawn();
-//		board.add(pawnWhite);
-//		assertEquals(2, board.getNumberOfPieces());
-//		assertEquals(pawnWhite, list.get(1));
-//		assertEquals(pawnBlack, list.get(0));
+	}
+
+	@SuppressWarnings("unused")
+	private void printBoard(String actualBoard) {
+		System.out.println();
+		System.out.println("--------");
+		System.out.print(actualBoard);
+		System.out.println("--------");
+	}
+
+	private String contructExpected() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("RNBQKBNR");
+		sb.append(NL);
+		sb.append("PPPPPPPP");
+		sb.append(NL);
+		sb.append("........");
+		sb.append(NL);
+		sb.append("........");
+		sb.append(NL);
+		sb.append("........");
+		sb.append(NL);
+		sb.append("........");
+		sb.append(NL);
+		sb.append("pppppppp");
+		sb.append(NL);
+		sb.append("rnbqkbnr");
+		sb.append(NL);
+		return sb.toString();
 	}
 
 }

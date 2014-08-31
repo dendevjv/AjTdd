@@ -2,8 +2,6 @@ package ajtdd.sis.studentinfo;
 
 import java.util.Date;
 
-import ajtdd.Debug;
-
 import junit.framework.TestCase;
 
 public class CourseSessionTest extends TestCase {
@@ -33,8 +31,6 @@ public class CourseSessionTest extends TestCase {
 	}
 
 	public void testCreate() {
-		Debug.log.info("CourseSessionTest");
-		
 		assertEquals(DEPARTMENT_NAME, session.getDepartment());
 		assertEquals(COURSE_NUMBER, session.getNumber());
 		assertEquals(0, session.getNumberOfStudents());
