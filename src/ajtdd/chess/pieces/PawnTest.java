@@ -1,8 +1,12 @@
 package ajtdd.chess.pieces;
 
+import ajtdd.Debug;
+
 public class PawnTest  extends junit.framework.TestCase {
 
 	public void testCreate() {
+		Debug.log.info("PawnTest");
+		
 		Pawn pawn1 = new Pawn(Pawn.WHITE_COLOR);
 		assertEquals(Pawn.WHITE_COLOR, pawn1.getColor());
 		
@@ -11,6 +15,18 @@ public class PawnTest  extends junit.framework.TestCase {
 		
 		Pawn pawn3 = new Pawn();
 		assertEquals(Pawn.WHITE_COLOR, pawn3.getColor());
+	}
+	
+	public void testRepresentation() {
+		assertEquals("p", new Pawn(Pawn.WHITE_COLOR).toString());
+		assertEquals("P", new Pawn(Pawn.BLACK_COLOR).toString());
+		
+		try {
+			 new Pawn("Yellow").toString();
+			 fail("Invalid color, expected IllegalStateException");
+		} catch (IllegalStateException ex) {
+			// expected
+		}
 	}
 	
 //	@Test

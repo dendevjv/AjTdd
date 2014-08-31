@@ -3,22 +3,25 @@ package ajtdd.chess.pieces;
 /**
  * Represents a pawn in a chess game.
  */
-public class Pawn {
-	public static final String WHITE_COLOR = "white";
-	public static final String BLACK_COLOR = "black";
-	
-	private String color;
+public class Pawn extends Piece {
+	private static final String WHITE_REPRESENTATION = "p";
+	private static final String BLACK_REPRESENTATION = "P";
 	
 	public Pawn() {
-		this(WHITE_COLOR);
+		super(WHITE_COLOR);
 	}
 
 	public Pawn(String color) {
-		this.color = color;
+		super(color);
 	}
 
-	public String getColor() {
-		return color;
+	@Override
+	public String toString() {
+		if (BLACK_COLOR.equals(getColor())) {
+			return BLACK_REPRESENTATION;
+		} else if (WHITE_COLOR.equals(getColor())) {
+			return WHITE_REPRESENTATION;
+		}
+		throw new IllegalStateException("Invalid value of field color");
 	}
-
 }

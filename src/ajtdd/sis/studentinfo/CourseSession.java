@@ -6,49 +6,81 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Provides a representation of a single semester
- * session of a specific university course.
+ * Provides a representation of a single semester session of a specific
+ * university course.
  */
 public class CourseSession {
+	private static int count;
+
+	public static CourseSession create(String departmentName,
+			String courseNumber, Date startDate) {
+		incrementCount();
+		return new CourseSession(departmentName, courseNumber, startDate);
+	}
+
+	public static int getCount() {
+		return count;
+	}
+
+	public static void resetCount() {
+		count = 0;
+	}
+
+	private static void incrementCount() {
+		++count;
+	}
+
 	private String department;
 	private String number;
+	private int numberOfCredits;
 	private Date startDate;
 	private ArrayList<Student> students = new ArrayList<Student>();
 
 	/**
 	 * Constructs a CourseSession starting on a specific date.
+	 * 
 	 * @param department
 	 * @param number
 	 * @param startDate
 	 */
-	public CourseSession(String department, String number, Date startDate) {
+	private CourseSession(String department, String number, Date startDate) {
 		this.department = department;
 		this.number = number;
 		this.startDate = startDate;
 	}
 
-	String getDepartment() {
-		return department;
+	public void enroll(Student student) {
+		student.addCredits(numberOfCredits);
+		students.add(student);
 	}
 
-	String getNumber() {
-		return number;
+	public ArrayList<Student> getAllStudents() {
+		return students;
 	}
 
 	public int getNumberOfStudents() {
 		return students.size();
 	}
 
-	public void enroll(Student student) {
-		students.add(student);
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setNumberOfCredits(int credits) {
+		this.numberOfCredits = credits;
 	}
 
 	Student get(int i) {
 		return students.get(i);
 	}
 
+	String getDepartment() {
+		return department;
+	}
+
 	/**
 	 * Get the last date of the course session
+	 * 
 	 * @return the last date of the course session
 	 */
 	Object getEndDate() {
@@ -63,12 +95,8 @@ public class CourseSession {
 		return calendar.getTime();
 	}
 
-	public Date getStartDate() {
-		return startDate;
-	}
-	
-	public ArrayList<Student> getAllStudents() {
-		return students;
+	String getNumber() {
+		return number;
 	}
 
 }

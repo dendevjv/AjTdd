@@ -27,7 +27,7 @@
 	<target name="junittest" depends="build" 
 			description="run junit tests">
 		<java classname="junit.textui.TestRunner" fork="yes">
-			<arg value="ajtdd.sis.studentinfo.AllTests" />
+			<arg value="ajtdd.AllTests" />
 			<classpath refid="classpath" />
 		</java>
 	</target>

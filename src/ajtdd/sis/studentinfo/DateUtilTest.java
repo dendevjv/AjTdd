@@ -4,10 +4,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import ajtdd.Debug;
+
 import junit.framework.TestCase;
 
 public class DateUtilTest extends TestCase {
 	public void testCreateDate() {
+		Debug.log.info("DateUtilTest");
+		
 		Date date = DateUtil.createDate(2000, 1, 1);
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTime(date);
