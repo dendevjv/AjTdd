@@ -1,16 +1,14 @@
 package ajtdd.sis.studentinfo;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Provides a representation of a single semester session of a specific
  * university course.
  */
-public class CourseSession {
+public class CourseSession extends Session  {
 	private static int count;
+	private static final int SESSION_LENGTH = 16;
 
 	public static CourseSession create(String departmentName,
 			String courseNumber, Date startDate) {
@@ -30,12 +28,6 @@ public class CourseSession {
 		++count;
 	}
 
-	private String department;
-	private String number;
-	private int numberOfCredits;
-	private Date startDate;
-	private ArrayList<Student> students = new ArrayList<Student>();
-
 	/**
 	 * Constructs a CourseSession starting on a specific date.
 	 * 
@@ -43,60 +35,12 @@ public class CourseSession {
 	 * @param number
 	 * @param startDate
 	 */
-	private CourseSession(String department, String number, Date startDate) {
-		this.department = department;
-		this.number = number;
-		this.startDate = startDate;
+	protected CourseSession(String department, String number, Date startDate) {
+		super(department, number, startDate);
 	}
 
-	public void enroll(Student student) {
-		student.addCredits(numberOfCredits);
-		students.add(student);
-	}
-
-	public ArrayList<Student> getAllStudents() {
-		return students;
-	}
-
-	public int getNumberOfStudents() {
-		return students.size();
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setNumberOfCredits(int credits) {
-		this.numberOfCredits = credits;
-	}
-
-	Student get(int i) {
-		return students.get(i);
-	}
-
-	String getDepartment() {
-		return department;
-	}
-
-	/**
-	 * Get the last date of the course session
-	 * 
-	 * @return the last date of the course session
-	 */
-	Object getEndDate() {
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.setTime(startDate);
-		final int sessionLengthInWeeks = 16;
-		final int daysInWeek = 7;
-		final int daysFromFridayToMonday = 3;
-		final int numberOfDays = sessionLengthInWeeks * daysInWeek
-				- daysFromFridayToMonday;
-		calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
-		return calendar.getTime();
-	}
-
-	String getNumber() {
-		return number;
+	public int getSessionLength() {
+		return SESSION_LENGTH;
 	}
 
 }
